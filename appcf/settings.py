@@ -125,3 +125,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)#GAM: Necesario para que detecte archivos staticos
+
+#GAM: Definicion de la ruta del login y la ruta al cerrar sesion
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/login/'
