@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -109,3 +109,20 @@ class MarcaEdit(LoginRequiredMixin, generic.UpdateView):
         form.instance.um = self.request.user.id
         return super().form_valid(form)
 
+def marca_inactivar(request, id):
+    marca = Marca.objects.filter(pk=id).first()
+    contexto = {}
+    template_name = 'inv/catalogos_del.html'
+
+    if not marca:
+        return redirect('inv:marca_list')
+
+    if request.method=='GET':
+        contexto = {'obj':marca}
+
+    if request.method=='POST':
+        marca.estado = False
+        marca.save()
+        return redirect('inv:marca_list')
+
+    return render(request, template_name, contexto)
