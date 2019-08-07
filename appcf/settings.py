@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bases',#GAM: Agregar el nombre de cada app creada
     'inv',#GAM: Agregar el nombre de cada app creada
+    'cmp',#GAM: Agregar el nombre de cada app creada
 ]
 
 MIDDLEWARE = [
