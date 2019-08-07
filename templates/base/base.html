@@ -70,6 +70,7 @@
             <a class="collapse-item" href="{% url 'inv:subcategoria_list' %}">Subcategorias</a>
             <a class="collapse-item" href="{% url 'inv:marca_list' %}">Marcas</a>
             <a class="collapse-item" href="{% url 'inv:um_list' %}">Unidad medida</a>
+            <a class="collapse-item" href="{% url 'inv:producto_list' %}">Productos</a>
           </div>
         </div>
       </li>
@@ -395,6 +396,9 @@
     </div>
   </div>
 
+  <div class="model fade" id="popup">
+  </div>
+
   <!-- Bootstrap core JavaScript-->
   <script src="{% static 'base/vendor/jquery/jquery.min.js' %}"></script>
   <script src="{% static 'base/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
@@ -411,6 +415,25 @@
 
     {% block js_page %}
     {% endblock js_page %}
+
+    {% block control_modal %}
+    <script>
+      function abrir_modal(url) {
+        $("#popup").load(url, function() {
+          $(this).modal({
+            backdrop:'static',
+            keyboard:false
+          })
+          $(this).modal('show');
+        });
+        return false;
+      }
+      function cerrar_modal(url) {
+        $("#popup").modal('hide');
+        return false;
+      }
+    </script>
+    {% endblock control_modal %}
 
 </body>
 
