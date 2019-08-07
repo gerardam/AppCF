@@ -12,7 +12,7 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" x-placement="bottom-end" style="position: absolute; transform: translate3d(-156px, 19px, 0px); top: 0px; left: 0px; will-change: transform;">
         <div class="dropdown-header">Acciones</div>
-        <a class="dropdown-item" href="{% url 'inv:producto_new' %}"><i class="fas fa-plus-circle"></i> Nuevo</a>
+        <a class="dropdown-item" onclick="return abrir_modal('{% url 'inv:producto_new' %}')" href="#"><i class="fas fa-plus-circle"></i> Nuevo</a>
         </div>
     </div>
     </div>
@@ -30,6 +30,7 @@
                 <th>Existencia</th>
                 <th>Marca</th>
                 <th>Uni. medida</th>
+                <th>Estado</th>
                 <th class="all">Acciones</th>
             </thead>
             <tbody>
@@ -44,8 +45,8 @@
                     <td>{{ item.unidad_medida }}</td>
                     <td>{{ item.estado|yesno:'Activo,Inactivo' }}</td>
                     <td>
-                        <a href="{% url 'inv:marca_edit' item.id %}" class="btn btn-primary btn-circle" role="button"><i class="far fa-edit"></i></a>
-                        <a href="{% url 'inv:marca_inactivar' item.id %}" class="btn btn-danger btn-circle" role="button"><i class="far fa-trash-alt"></i></a>
+                        <button class="btn btn-primary btn-circle" onclick="return abrir_modal('{% url 'inv:producto_edit' item.id %}')"><i class="far fa-edit"></i></button>
+                        <a href="{% url 'inv:producto_inactivar' item.id %}" class="btn btn-danger btn-circle" role="button"><i class="far fa-trash-alt"></i></a>
                     </td>
                 </tr>
                 {% endfor %}
