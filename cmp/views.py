@@ -16,7 +16,7 @@ class ProveedorNew(LoginRequiredMixin, generic.CreateView):
     template_name = 'cmp/proveedor_form.html'
     context_object_name = 'obj'
     form_class = ProveedorForm
-    success_url = reverse_lazy('inv:proveedor_list')
+    success_url = reverse_lazy('cmp:proveedor_list')
     login_url = 'bases:login'
 
     def form_valid(self, form):
@@ -25,10 +25,10 @@ class ProveedorNew(LoginRequiredMixin, generic.CreateView):
 
 class ProveedorEdit(LoginRequiredMixin, generic.UpdateView):
     model = Proveedor
-    template_name = 'inv/proveedor_form.html'
+    template_name = 'cmp/proveedor_form.html'
     context_object_name = 'obj'
     form_class = ProveedorForm
-    success_url = reverse_lazy('inv:proveedor_list')
+    success_url = reverse_lazy('cmp:proveedor_list')
     login_url = 'bases:login'
 
     def form_valid(self, form):
@@ -38,10 +38,10 @@ class ProveedorEdit(LoginRequiredMixin, generic.UpdateView):
 def proveedor_inactivar(request, id):
     provee = Proveedor.objects.filter(pk=id).first()
     contexto = {}
-    template_name = 'inv/catalogos_del.html'
+    template_name = 'cmp/catalogos_del.html'
 
     if not provee:
-        return redirect('inv:proveedor_list')
+        return redirect('cmp:proveedor_list')
 
     if request.method=='GET':
         contexto = {'obj':provee}
@@ -49,6 +49,6 @@ def proveedor_inactivar(request, id):
     if request.method=='POST':
         provee.estado = False
         provee.save()
-        return redirect('inv:proveedor_list')
+        return redirect('cmp:proveedor_list')
 
     return render(request, template_name, contexto)
