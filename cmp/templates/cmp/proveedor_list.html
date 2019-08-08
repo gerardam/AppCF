@@ -44,7 +44,7 @@
                     <td>{{ item.estado|yesno:'Activo,Inactivo' }}</td>
                     <td>
                         <button class="btn btn-primary btn-circle" onclick="return abrir_modal('{% url 'cmp:proveedor_edit' item.id %}')"><i class="far fa-edit"></i></button>
-                        <a href="{% url 'cmp:proveedor_inactivar' item.id %}" class="btn btn-danger btn-circle" role="button"><i class="far fa-trash-alt"></i></a>
+                        <button class="btn btn-danger btn-circle" onclick="return abrir_modal('{% url 'cmp:proveedor_inactivar' item.id %}')"><i class="far fa-trash-alt"></i></button>
                     </td>
                 </tr>
                 {% endfor %}
