@@ -435,6 +435,13 @@
         return false;
       }
       function mensaje(msg, color="green") {
+        if(color == "success"){
+          color = "green";
+        }
+        else if(color == "error"){
+          color = "red";
+        }
+
         $.alert({
           title: '',
           theme: 'material',
@@ -442,6 +449,13 @@
           content: msg
         });
       }
+
+      {% if messages %}
+        {% for message in messages %}
+          mensaje('{{ message }}', '{{ message.tags }}');
+        {% endfor %}
+      {% endif %}
+
     </script>
     {% endblock control_modal %}
 
