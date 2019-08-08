@@ -10,10 +10,12 @@ class SinPrivilegios(PermissionRequiredMixin):
     redirect_field_name = 'redirect_to'
 
     def handle_no_permission(self):
-        self.login_url = 'bases:sin_privilegios'
+        from django.contrib.auth.models import AnonymousUser
+        if not self.request.user==AnonymousUser():
+            self.login_url = 'bases:sin_privilegios'
         return HttpResponseRedirect(reverse_lazy(self.login_url))
 
-        
+
 class Home(LoginRequiredMixin, generic.TemplateView):
     template_name = 'bases/home.html'
     login_url = 'bases:login'
