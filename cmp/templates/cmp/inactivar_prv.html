@@ -56,9 +56,12 @@ $(document).ready(function(){
                 console.log(response);
                 cerrar_modal();
                 //alert(response);
+                var tipo=(response.startsWith('El proveedor no existe') ? 'red':'green' );
+                mensaje(response, tipo);
             },
             error:function(jqXHR, textStatus, errorThrow){
                 console.log(textStatus, errorThrow);
+                mensaje(errorThrow, "red");
                 cerrar_modal();
             }
         });
