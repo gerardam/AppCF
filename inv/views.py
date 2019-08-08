@@ -7,8 +7,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin,\
 from django.contrib.messages.views import SuccessMessageMixin
 from .models import Categoria, SubCategoria, Marca, UnidadMedida, Producto
 from .forms import CategoriaForm, SubCategoriaForm, MarcaForm, UMForm, ProductoForm
+from bases.views import SinPrivilegios
 
-class CategoriaView(LoginRequiredMixin, PermissionRequiredMixin,\
+
+class CategoriaView(LoginRequiredMixin, SinPrivilegios,\
     generic.ListView):
     permission_required = 'inv.view_categoria'
     model = Categoria
@@ -51,7 +53,7 @@ class CategoriaDel(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy('inv:categoria_list')
 
 
-class SubCategoriaView(LoginRequiredMixin, PermissionRequiredMixin,\
+class SubCategoriaView(LoginRequiredMixin, SinPrivilegios,\
     generic.ListView):
     permission_required = 'inv.view_subcategoria'
     model = SubCategoria
@@ -90,7 +92,7 @@ class SubCategoriaDel(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy('inv:subcategoria_list')
 
 
-class MarcaView(LoginRequiredMixin, PermissionRequiredMixin,\
+class MarcaView(LoginRequiredMixin, SinPrivilegios,\
     generic.ListView):
     permission_required = 'inv.view_marca'
     model = Marca
@@ -142,7 +144,7 @@ def marca_inactivar(request, id):
     return render(request, template_name, contexto)
 
 
-class UMView(LoginRequiredMixin, PermissionRequiredMixin,\
+class UMView(LoginRequiredMixin, SinPrivilegios,\
     generic.ListView):
     permission_required = 'inv.view_unidadmedida'
     model = UnidadMedida
@@ -193,7 +195,7 @@ def um_inactivar(request, id):
     return render(request, template_name, contexto)
 
 
-class ProductoView(LoginRequiredMixin, PermissionRequiredMixin,\
+class ProductoView(LoginRequiredMixin, SinPrivilegios,\
     generic.ListView):
     permission_required = 'inv.view_producto'
     model = Producto

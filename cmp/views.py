@@ -7,8 +7,9 @@ from django.http import HttpResponse
 import json
 from .models import Proveedor
 from .forms import ProveedorForm
+from bases.views import SinPrivilegios
 
-class ProveedorView(LoginRequiredMixin, PermissionRequiredMixin,\
+class ProveedorView(LoginRequiredMixin, SinPrivilegios,\
     generic.ListView):
     permission_required = 'inv.view_proveedor'
     model = Proveedor
