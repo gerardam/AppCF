@@ -1,13 +1,16 @@
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin,\
+    PermissionRequiredMixin
 from django.http import HttpResponse
 import json
 from .models import Proveedor
 from .forms import ProveedorForm
 
-class ProveedorView(LoginRequiredMixin, generic.ListView):
+class ProveedorView(LoginRequiredMixin, PermissionRequiredMixin,\
+    generic.ListView):
+    permission_required = 'inv.view_proveedor'
     model = Proveedor
     template_name = 'cmp/proveedor_list.html'
     context_object_name = 'obj'
