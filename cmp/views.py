@@ -9,33 +9,29 @@ from .models import Proveedor
 from .forms import ProveedorForm
 from bases.views import SinPrivilegios
 
-class ProveedorView(LoginRequiredMixin, SinPrivilegios,\
-    generic.ListView):
+class ProveedorView(SinPrivilegios, generic.ListView):
     permission_required = 'inv.view_proveedor'
     model = Proveedor
     template_name = 'cmp/proveedor_list.html'
     context_object_name = 'obj'
-    login_url = 'bases:login'
 
-class ProveedorNew(LoginRequiredMixin, generic.CreateView):
+class ProveedorNew(SinPrivilegios, generic.CreateView):
     model = Proveedor
     template_name = 'cmp/proveedor_form.html'
     context_object_name = 'obj'
     form_class = ProveedorForm
     success_url = reverse_lazy('cmp:proveedor_list')
-    login_url = 'bases:login'
 
     def form_valid(self, form):
         form.instance.uc = self.request.user
         return super().form_valid(form)
 
-class ProveedorEdit(LoginRequiredMixin, generic.UpdateView):
+class ProveedorEdit(SinPrivilegios, generic.UpdateView):
     model = Proveedor
     template_name = 'cmp/proveedor_form.html'
     context_object_name = 'obj'
     form_class = ProveedorForm
     success_url = reverse_lazy('cmp:proveedor_list')
-    login_url = 'bases:login'
 
     def form_valid(self, form):
         form.instance.um = self.request.user.id
