@@ -92,6 +92,20 @@
           </div>
         </div>
       </li>
+      <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTres" aria-expanded="true" aria-controls="collapseTres">
+            <i class="fas fa-cash-register"></i>
+            <span>Movimientos</span>
+          </a>
+          <div id="collapseTres" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">ENTRADAS</h6>
+              {% if perms.cmp.view_compras %}
+              <a class="collapse-item" href="{% url 'cmp:compras_list' %}">Compras</a>
+              {% endif %}
+            </div>
+          </div>
+        </li>
 
       <!-- Nav Item - Utilities Collapse Menu
       <li class="nav-item">
