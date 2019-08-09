@@ -11,6 +11,7 @@ from .forms import CategoriaForm, SubCategoriaForm, MarcaForm, UMForm, ProductoF
 from bases.views import SinPrivilegios
 
 
+########## CATEGORIAS ##########
 class CategoriaView(SinPrivilegios, generic.ListView):
     permission_required = 'inv.view_categoria'
     model = Categoria
@@ -19,6 +20,7 @@ class CategoriaView(SinPrivilegios, generic.ListView):
 
 class CategoriaNew(SuccessMessageMixin, SinPrivilegios,\
     generic.CreateView):
+    permission_required = 'inv.add_categoria'
     model=Categoria
     template_name = 'inv/categoria_form.html'
     context_object_name = 'obj'
@@ -32,6 +34,7 @@ class CategoriaNew(SuccessMessageMixin, SinPrivilegios,\
 
 class CategoriaEdit(SuccessMessageMixin, SinPrivilegios,\
     generic.UpdateView):
+    permission_required = 'inv.change_categoria'
     model=Categoria
     template_name = 'inv/categoria_form.html'
     context_object_name = 'obj'
@@ -43,13 +46,14 @@ class CategoriaEdit(SuccessMessageMixin, SinPrivilegios,\
         form.instance.um = self.request.user.id
         return super().form_valid(form)
 
-class CategoriaDel(LoginRequiredMixin, generic.DeleteView):
+class CategoriaDel(SinPrivilegios, generic.DeleteView):
+    permission_required = 'inv.delete_categoria'
     model = Categoria
     template_name = 'inv/catalogos_del.html'
     context_object_name = 'obj'
     success_url = reverse_lazy('inv:categoria_list')
 
-
+########## SUBCATEGORIAS ##########
 class SubCategoriaView(SinPrivilegios, generic.ListView):
     permission_required = 'inv.view_subcategoria'
     model = SubCategoria
@@ -57,6 +61,7 @@ class SubCategoriaView(SinPrivilegios, generic.ListView):
     context_object_name = 'obj'
 
 class SubCategoriaNew(SinPrivilegios, generic.CreateView):
+    permission_required = 'inv.add_subcategoria'
     model= SubCategoria
     template_name = 'inv/subcategoria_form.html'
     context_object_name = 'obj'
@@ -68,6 +73,7 @@ class SubCategoriaNew(SinPrivilegios, generic.CreateView):
         return super().form_valid(form)
 
 class SubCategoriaEdit(SinPrivilegios, generic.UpdateView):
+    permission_required = 'inv.change_subcategoria'
     model= SubCategoria
     template_name = 'inv/subcategoria_form.html'
     context_object_name = 'obj'
@@ -79,12 +85,13 @@ class SubCategoriaEdit(SinPrivilegios, generic.UpdateView):
         return super().form_valid(form)
 
 class SubCategoriaDel(LoginRequiredMixin, generic.DeleteView):
+    permission_required = 'inv.delete_subcategoria'
     model = SubCategoria
     template_name = 'inv/catalogos_del.html'
     context_object_name = 'obj'
     success_url = reverse_lazy('inv:subcategoria_list')
 
-
+########## MARCAS ##########
 class MarcaView(SinPrivilegios, generic.ListView):
     permission_required = 'inv.view_marca'
     model = Marca
@@ -92,6 +99,7 @@ class MarcaView(SinPrivilegios, generic.ListView):
     context_object_name = 'obj'
 
 class MarcaNew(SinPrivilegios, generic.CreateView):
+    permission_required = 'inv.add_marca'
     model = Marca
     template_name = 'inv/marca_form.html'
     context_object_name = 'obj'
@@ -103,6 +111,7 @@ class MarcaNew(SinPrivilegios, generic.CreateView):
         return super().form_valid(form)
 
 class MarcaEdit(SinPrivilegios, generic.UpdateView):
+    permission_required = 'inv.change_marca'
     model = Marca
     template_name = 'inv/marca_form.html'
     context_object_name = 'obj'
@@ -134,7 +143,7 @@ def marca_inactivar(request, id):
 
     return render(request, template_name, contexto)
 
-
+########## UNIDADES DE MEDIDA ##########
 class UMView(SinPrivilegios, generic.ListView):
     permission_required = 'inv.view_unidadmedida'
     model = UnidadMedida
@@ -142,6 +151,7 @@ class UMView(SinPrivilegios, generic.ListView):
     context_object_name = 'obj'
 
 class UMNew(SinPrivilegios, generic.CreateView):
+    permission_required = 'inv.add_unidadmedida'
     model = UnidadMedida
     template_name = 'inv/um_form.html'
     context_object_name = 'obj'
@@ -153,6 +163,7 @@ class UMNew(SinPrivilegios, generic.CreateView):
         return super().form_valid(form)
 
 class UMEdit(SinPrivilegios, generic.UpdateView):
+    permission_required = 'inv.change_unidadmedida'
     model = UnidadMedida
     template_name = 'inv/um_form.html'
     context_object_name = 'obj'
@@ -163,6 +174,8 @@ class UMEdit(SinPrivilegios, generic.UpdateView):
         form.instance.um = self.request.user.id
         return super().form_valid(form)
 
+@login_required(login_url='/login/')
+@permission_required('inv.change_unidadmedida', login_url='bases:sin_privilegios')
 def um_inactivar(request, id):
     um = UnidadMedida.objects.filter(pk=id).first()
     contexto = {}
@@ -181,7 +194,7 @@ def um_inactivar(request, id):
 
     return render(request, template_name, contexto)
 
-
+########## PRODUCTOS ##########
 class ProductoView(SinPrivilegios, generic.ListView):
     permission_required = 'inv.view_producto'
     model = Producto
@@ -189,6 +202,7 @@ class ProductoView(SinPrivilegios, generic.ListView):
     context_object_name = 'obj'
 
 class ProductoNew(SinPrivilegios, generic.CreateView):
+    permission_required = 'inv.add_producto'
     model = Producto
     template_name = 'inv/producto_form.html'
     context_object_name = 'obj'
@@ -200,6 +214,7 @@ class ProductoNew(SinPrivilegios, generic.CreateView):
         return super().form_valid(form)
 
 class ProductoEdit(SinPrivilegios, generic.UpdateView):
+    permission_required = 'inv.change_producto'
     model = Producto
     template_name = 'inv/producto_form.html'
     context_object_name = 'obj'

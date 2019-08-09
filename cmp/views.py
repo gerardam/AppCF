@@ -10,6 +10,8 @@ from .models import Proveedor
 from .forms import ProveedorForm
 from bases.views import SinPrivilegios
 
+
+########## PROVEEDORES ##########
 class ProveedorView(SinPrivilegios, generic.ListView):
     permission_required = 'inv.view_proveedor'
     model = Proveedor
@@ -17,6 +19,7 @@ class ProveedorView(SinPrivilegios, generic.ListView):
     context_object_name = 'obj'
 
 class ProveedorNew(SinPrivilegios, generic.CreateView):
+    permission_required = 'cmp.add_proveedor'
     model = Proveedor
     template_name = 'cmp/proveedor_form.html'
     context_object_name = 'obj'
@@ -28,6 +31,7 @@ class ProveedorNew(SinPrivilegios, generic.CreateView):
         return super().form_valid(form)
 
 class ProveedorEdit(SinPrivilegios, generic.UpdateView):
+    permission_required = 'cmp.change_proveedor'
     model = Proveedor
     template_name = 'cmp/proveedor_form.html'
     context_object_name = 'obj'
