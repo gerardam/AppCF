@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import ProveedorView,ProveedorNew,ProveedorEdit,proveedor_inactivar,\
-    ComprasView, Compras
+    ComprasView, Compras, CompraDetDelete
 
 urlpatterns = [
     path('proveedor/', ProveedorView.as_view(), name='proveedor_list'),
@@ -11,5 +11,5 @@ urlpatterns = [
     path('compras/', ComprasView.as_view(), name='compras_list'),
     path('compras/new', Compras, name='compras_new'),
     path('compras/edit/<int:compra_id>', Compras, name='compras_edit'),
-    path('compras/<int:compra_id>/delete/<int:pk>',ComprasView.as_view(), name="compras_del"),
+    path('compras/<int:compra_id>/delete/<int:pk>',CompraDetDelete.as_view(), name="compras_del"),
 ]

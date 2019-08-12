@@ -172,3 +172,15 @@ def Compras(request,compra_id=None):
         return redirect("cmp:compras_edit",compra_id=compra_id)
 
     return render(request, template_name, contexto)
+
+
+class CompraDetDelete(SinPrivilegios, generic.DeleteView):
+    permission_required = 'cmp.delete_comprasdet'
+    model = ComprasDet
+    template_name = 'cmp/compras_det_del.html'
+    context_object_name = 'obj'
+
+    def get_success_url(self):
+        compra_id = self.kwargs['compra_id']
+        return reverse_lazy('cmp:compras_edit', kwargs={'compra_id':compra_id})
+
