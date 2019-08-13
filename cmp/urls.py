@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import ProveedorView,ProveedorNew,ProveedorEdit,proveedor_inactivar,\
     ComprasView, Compras, CompraDetDelete
+from .reportes import reporte_compras
 
 urlpatterns = [
     path('proveedor/', ProveedorView.as_view(), name='proveedor_list'),
