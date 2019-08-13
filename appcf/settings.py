@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'bases',#GAM: Agregar el nombre de cada app creada
     'inv',#GAM: Agregar el nombre de cada app creada
     'cmp',#GAM: Agregar el nombre de cada app creada
+    'fac',#GAM: Agregar el nombre de cada app creada
 ]
 
 MIDDLEWARE = [
