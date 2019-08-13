@@ -49,6 +49,7 @@
                     <td>{{ item.estado|yesno:'Activo,Inactivo' }}</td>
                     <td>
                         <a href="{% url 'cmp:compras_edit' item.id %}" class="btn btn-primary btn-circle"><i class="far fa-edit"></i></a>
+                        <a href="{% url 'cmp:compras_print_one' item.id %}" class="btn btn-warning btn-circle" target="reportes"><i class="fas fa-print"></i></a>
                         <!-- <button class="btn btn-primary btn-circle" onclick="return abrir_modal('{% url 'cmp:proveedor_edit' item.id %}')"><i class="far fa-edit"></i></button>
                         <button class="btn btn-danger btn-circle" onclick="return abrir_modal('{% url 'cmp:proveedor_inactivar' item.id %}')"><i class="far fa-trash-alt"></i></button> -->
                     </td>
