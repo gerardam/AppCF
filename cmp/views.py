@@ -139,14 +139,14 @@ def Compras(request,compra_id=None):
                 enc.save()
 
         if not compra_id:
-            return redirect("cmp:compras_list")
+            return redirect('cmp:compras_list')
 
-        producto = request.POST.get("id_id_producto")
-        cantidad = request.POST.get("id_cantidad_detalle")
-        precio = request.POST.get("id_precio_detalle")
-        sub_total_detalle = request.POST.get("id_sub_total_detalle")
-        descuento_detalle  = request.POST.get("id_descuento_detalle")
-        total_detalle  = request.POST.get("id_total_detalle")
+        producto = request.POST.get('id_id_producto')
+        cantidad = request.POST.get('id_cantidad_detalle')
+        precio = request.POST.get('id_precio_detalle')
+        sub_total_detalle = request.POST.get('id_sub_total_detalle')
+        descuento_detalle  = request.POST.get('id_descuento_detalle')
+        total_detalle  = request.POST.get('id_total_detalle')
 
         prod = Producto.objects.get(pk=producto)
 
@@ -165,11 +165,11 @@ def Compras(request,compra_id=None):
 
             sub_total=ComprasDet.objects.filter(compra=compra_id).aggregate(Sum('sub_total'))
             descuento=ComprasDet.objects.filter(compra=compra_id).aggregate(Sum('descuento'))
-            enc.sub_total = sub_total["sub_total__sum"]
-            enc.descuento=descuento["descuento__sum"]
+            enc.sub_total = sub_total['sub_total__sum']
+            enc.descuento=descuento['descuento__sum']
             enc.save()
 
-        return redirect("cmp:compras_edit",compra_id=compra_id)
+        return redirect('cmp:compras_edit',compra_id=compra_id)
 
     return render(request, template_name, contexto)
 
