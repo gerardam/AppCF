@@ -16,7 +16,7 @@ from inv.models import Producto
 
 ########## PROVEEDORES ##########
 class ProveedorView(SinPrivilegios, generic.ListView):
-    permission_required = 'inv.view_proveedor'
+    permission_required = 'cmp.view_proveedor'
     model = Proveedor
     template_name = 'cmp/proveedor_list.html'
     context_object_name = 'obj'

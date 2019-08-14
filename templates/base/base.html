@@ -6,8 +6,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="Ejemplo de una app de compras">
+  <meta name="author" content="Gerardo Alvarez">
+  <link rel="shortcut icon" type="image/png" href="{% static 'base/img/favicon.ico' %}"/>
 
   <title>Sistema de compras y facturacion</title>
 
@@ -90,6 +91,9 @@
 
             {% if perms.cmp.view_proveedor %}
             <a class="collapse-item" href="{% url 'cmp:proveedor_list' %}">Proveedores</a>
+            {% endif %}
+            {% if perms.fac.view_cliente %}
+            <a class="collapse-item" href="{% url 'fac:cliente_list' %}">Clientes</a>
             {% endif %}
           </div>
         </div>
