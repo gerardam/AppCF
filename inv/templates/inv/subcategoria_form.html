@@ -3,7 +3,7 @@
 {% block page_content %}
 <form method="POST" class="form-inline">
     {% csrf_token %}
-    <div class="col-xl-12 col-md-12 mb-12">
+    <div class="col-xl-6 col-md-6 mb-6">
         {% if obj %}
         <div class="card border-left-warning shadow h-100 py-2">
         {% else %}
@@ -17,31 +17,26 @@
                         </div>
                         <div class="dropdown-divider"></div>
                         <div class="row">
-                            <div class="col-5">
+                            <div class="col-10">
                                 <div class="input-group">
-                                    <!-- <input type="text" name="descripcion" maxlength="100" class="form-control" required id="id_descripcion" placeholder="Descripcion" value="{% if obj %} {{ obj.descripcion }} {% endif %}"> -->
                                     {{ form.categoria }}
                                 </div>
-                            </div>
-                            <div class="col-5">
+                                <br>
                                 <div class="input-group">
-                                    <!-- <input type="text" name="descripcion" maxlength="100" class="form-control" required id="id_descripcion" placeholder="Descripcion" value="{% if obj %} {{ obj.descripcion }} {% endif %}"> -->
                                     {{ form.descripcion }}
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
-                                    <!-- <input type="checkbox" name="estado" class="custom-control-input" id="id_estado" {% if obj.estado %} checked {% endif %} >
-                                    <label class="custom-control-label" for="id_estado">Estado </label> -->
                                     {{ form.estado }}
                                 </div>
                             </div>
                         </div>
                         <div class="dropdown-divider"></div>
-                        <div class="row">
+                        <div class="row divBtnModal">
                             <div class="col">
-                                <button type="submit" class="btn btn-success"><span class="fa fa-save"></span> Guardar</button>
-                                <a href="{% url 'inv:subcategoria_list' %}" class="btn btn-danger"><span class="fa fa-trash"></span> Cancelar</a>
+                                <button type="submit" class="btn btn-success"><span class="fas fa-save"></span> Guardar</button>
+                                <a href="{% url 'inv:subcategoria_list' %}" class="btn btn-danger"><span class="fas fa-trash"></span> Cancelar</a>
                             </div>
                         </div>
                     </div>

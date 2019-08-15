@@ -8,13 +8,16 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Eliminar {{ obj.descripcion }}?</div>
-                        <button type="submit" class="btn btn-success"><span class="fa fa-save"></span> Eliminar</button>
-                        <!-- <a href="{% url 'inv:categoria_list' %}" class="btn btn-danger"><span class="fa fa-trash"></span> Cancelar</a> -->
-                        <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-danger"><span class="fa fa-trash"></span> Cancelar</a>
-                    </div>
-                    <div class="col-auto">
-                    <i class="far fa-question-circle fa-2x text-gray-300"></i>
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            Eliminar {{ obj.descripcion }}?
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="row divBtnModal">
+                            <div class="col">
+                                <button type="submit" class="btn btn-success"><span class="fas fa-save"></span> Eliminar</button>
+                                <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-danger"><span class="fas fa-trash"></span> Cancelar</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -43,10 +43,20 @@
                     <td>{{ item.existencia }}</td>
                     <td>{{ item.marca }}</td>
                     <td>{{ item.unidad_medida }}</td>
-                    <td>{{ item.estado|yesno:'Activo,Inactivo' }}</td>
+                    <td><!-- {{ item.estado|yesno:'Activo,Inactivo' }} -->
+                        <div class="divAccionTable">
+                            {% if item.estado %}
+                            <i class="fas fa-circle text-success"></i>
+                            {% else %}
+                            <i class="fas fa-circle text-danger"></i>
+                            {% endif %}
+                        </div>
+                    </td>
                     <td>
-                        <button class="btn btn-primary btn-circle" onclick="return abrir_modal('{% url 'inv:producto_edit' item.id %}')"><i class="far fa-edit"></i></button>
-                        <a href="{% url 'inv:producto_inactivar' item.id %}" class="btn btn-danger btn-circle" role="button"><i class="far fa-trash-alt"></i></a>
+                        <div class="divAccionTable">
+                            <button class="btn btn-primary btn-circle" onclick="return abrir_modal('{% url 'inv:producto_edit' item.id %}')"><i class="fas fa-edit"></i></button>
+                            <a href="{% url 'inv:producto_inactivar' item.id %}" class="btn btn-danger btn-circle" role="button"><i class="fas fa-trash"></i></a>
+                        </div>
                     </td>
                 </tr>
                 {% endfor %}
