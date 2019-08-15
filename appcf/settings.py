@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'inv',#GAM: Agregar el nombre de cada app creada
     'cmp',#GAM: Agregar el nombre de cada app creada
     'fac',#GAM: Agregar el nombre de cada app creada
+    'django_userforeignkey',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_userforeignkey.middleware.UserForeignKeyMiddleware',
 ]
 
 ROOT_URLCONF = 'appcf.urls'
