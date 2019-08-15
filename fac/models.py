@@ -3,7 +3,7 @@ from bases.models import ClaseModelo, ClaseModelo2
 from inv.models import Producto
 
 
-########## CLIENTE ##########
+########## CLIENTES ##########
 class Cliente(ClaseModelo):
     NAT = 'Natural'
     JUR = 'Juridica'
@@ -40,7 +40,7 @@ class Cliente(ClaseModelo):
         verbose_name_plural = 'Clientes'
 
 
-########## FACTURA ##########
+########## FACTURAS ##########
 class FacturaEnc(ClaseModelo2):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     fecha = models.DateTimeField(auto_now_add=True)

@@ -1,6 +1,8 @@
 from django.db import models
 from bases.models import ClaseModelo
 
+
+########## CATEGORIAS ##########
 class Categoria(ClaseModelo):
     descripcion = models.CharField(
         max_length=100,
@@ -19,6 +21,7 @@ class Categoria(ClaseModelo):
         verbose_name_plural = 'Categorías'
 
 
+########## SUBCATEGORIAS ##########
 class SubCategoria(ClaseModelo):
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     descripcion = models.CharField(
@@ -36,8 +39,9 @@ class SubCategoria(ClaseModelo):
     class Meta:
         verbose_name_plural = 'Subcategorías'
         unique_together = ('categoria', 'descripcion')
-        
 
+
+########## MARCAS ##########
 class Marca(ClaseModelo):
     descripcion = models.CharField(
         max_length=100,
@@ -56,6 +60,7 @@ class Marca(ClaseModelo):
         verbose_name_plural = 'Marcas'
 
 
+########## UNIDAD MEDIDAS ##########
 class UnidadMedida(ClaseModelo):
     descripcion = models.CharField(
         max_length=100,
@@ -74,6 +79,7 @@ class UnidadMedida(ClaseModelo):
         verbose_name_plural = 'Unidades de medida'
 
 
+########## PRODUCTOS ##########
 class Producto(ClaseModelo):
     codigo = models.CharField(
         max_length=20,

@@ -2,6 +2,7 @@ from django import forms
 from .models import Proveedor, ComprasEnc
 
 
+########## PROVEEDORES ##########
 class ProveedorForm(forms.ModelForm):
     email = forms.EmailField(max_length=250)
     class Meta:
@@ -18,6 +19,7 @@ class ProveedorForm(forms.ModelForm):
             })
 
 
+########## COMPRAS ##########
 class ComprasEncForm(forms.ModelForm):
     fecha_compra = forms.DateInput()
     fecha_factura = forms.DateInput()

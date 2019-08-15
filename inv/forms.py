@@ -1,6 +1,8 @@
 from django import forms
 from .models import Categoria, SubCategoria, Marca, UnidadMedida, Producto
 
+
+########## CATEGORIAS ##########
 class CategoriaForm(forms.ModelForm):
     class Meta:
         model = Categoria
@@ -16,6 +18,7 @@ class CategoriaForm(forms.ModelForm):
             })
 
 
+########## SUBCATEGORIAS ##########
 class SubCategoriaForm(forms.ModelForm):
     categoria = forms.ModelChoiceField(
         queryset = Categoria.objects.filter(estado=True).order_by('descripcion')
@@ -35,6 +38,7 @@ class SubCategoriaForm(forms.ModelForm):
         self.fields['categoria'].empty_label = 'Seleccione'
 
 
+########## MARCAS ##########
 class MarcaForm(forms.ModelForm):
     class Meta:
         model = Marca
@@ -50,6 +54,7 @@ class MarcaForm(forms.ModelForm):
             })
 
 
+########## UNIDAD MEDIDAS ##########
 class UMForm(forms.ModelForm):
     class Meta:
         model = UnidadMedida
@@ -65,12 +70,12 @@ class UMForm(forms.ModelForm):
             })
 
 
+########## PRODUCTOS ##########
 class ProductoForm(forms.ModelForm):
     class Meta:
         model = Producto
         fields = ['codigo','codigo_barra','descripcion','estado','precio', \
             'existencia','ultima_compra','marca','subcategoria','unidad_medida']
-        #labels = {'descripcion':'Descripcion del producto', 'estado':'Estado'}
         exclude = ['um','fm','uc','fc']
         widget = {'descripcion': forms.TextInput()}
 

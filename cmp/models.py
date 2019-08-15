@@ -6,6 +6,7 @@ from bases.models import ClaseModelo
 from inv.models import Producto
 
 
+########## PROVEEDORES ##########
 class Proveedor(ClaseModelo):
     descripcion = models.CharField(
         max_length=100,
@@ -40,6 +41,7 @@ class Proveedor(ClaseModelo):
         verbose_name_plural = 'Proveedores'
 
 
+########## COMPRAS ##########
 class ComprasEnc(ClaseModelo):
     fecha_compra = models.DateField(null=True,blank=True)
     observacion = models.TextField(blank=True,null=True)
@@ -84,7 +86,6 @@ class ComprasDet(ClaseModelo):
         verbose_name_plural = "Detalles Compras"
         verbose_name="Detalle Compra"
 
-
 @receiver(post_delete, sender=ComprasDet)
 def detalle_compra_borrar(sender, instance, **kwargs):
     id_producto = instance.producto.id
@@ -115,4 +116,3 @@ def detalle_compra_guardar(sender, instance, **kwargs):
         prod.existencia = cantidad
         prod.ultima_compra = fecha_compra
         prod.save()
-

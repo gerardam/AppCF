@@ -10,6 +10,7 @@ from .forms import ClienteForm
 from bases.views import SinPrivilegios
 
 
+########## VISTAS BASE ##########
 class VistaBaseCreate(SinPrivilegios, generic.CreateView):
     context_object_name = 'obj'
 
@@ -25,7 +26,7 @@ class VistaBaseEdit(SinPrivilegios, generic.UpdateView):
         return super().form_valid(form)
 
 
-########## CLIENTE ##########
+########## CLIENTES ##########
 class ClienteView(SinPrivilegios, generic.ListView):
     permission_required = 'fac.view_cliente'
     model = Cliente
@@ -61,4 +62,4 @@ def ClienteInactivar(request, id):
     return HttpResponse('FAIL')
 
 
-########## FACTURA ##########
+########## FACTURAS ##########
