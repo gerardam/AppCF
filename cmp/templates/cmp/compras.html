@@ -91,8 +91,8 @@
                                                     <td>{{ item.id }}</td>
                                                     <td>{{ item.descripcion }}</td>
                                                     <td>
-                                                        <button type="button" class="btn btn-warning btn-circle"
-                                                        onclick="selectProducto({{item.id}},'{{item.descripcion}}')" ><i class="far fa-hand-pointer"></i></button>
+                                                        <button type="button" class="btn btn-success btn-circle"
+                                                        onclick="selectProducto({{item.id}},'{{item.descripcion}}')" ><i class="fas fa-cart-plus"></i></button>
                                                     </td>
                                                     </tr>
                                                     {% endfor %}
@@ -141,7 +141,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <button type="submit" class="btn btn-success"><span class="fa fa-save"></span> Guardar</button>
-                                            <a href="{% url 'cmp:compras_list' %}" class="btn btn-danger"><i class="fa fa-trash"></i> Cancelar</a>
+                                            <a href="{% url 'cmp:compras_list' %}" class="btn btn-danger"><i class="fas fa-trash"></i> Cancelar</a>
                                         </div>
                                     </div>
                                     <!-- Fin Botones -->
@@ -171,7 +171,7 @@
                                     <td>{{ item.descuento }}</td>
                                     <td>{{ item.total }}</td>
                                     <td>
-                                        <button class="btn btn-danger btn-circle" onclick="return abrir_modal('{% url 'cmp:compras_del' encabezado.pk item.id %}')"><i class="fas fa-trash-alt"></i></button>
+                                        <button class="btn btn-danger btn-circle" onclick="return abrir_modal('{% url 'cmp:compras_del' encabezado.pk item.id %}')"><i class="fas fa-trash"></i></button>
                                     </td>
                                     </tr>
                                     {% endfor %}

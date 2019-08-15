@@ -1,12 +1,11 @@
 {% extends 'base/base.html' %}
 
 {% block page_content %}
-<!-- Dropdown Card Example -->
 <div class="card shadow mb-4">
     <!-- Card Header - Dropdown -->
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
     <h6 class="m-0 font-weight-bold text-primary">Lista de proveedores</h6>
-    <div class="dropdown no-arrow">
+    <!-- <div class="dropdown no-arrow">
         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
         </a>
@@ -14,21 +13,31 @@
         <div class="dropdown-header">Acciones</div>
         <a class="dropdown-item" onclick="return abrir_modal('{% url 'cmp:proveedor_new' %}')" href="#"><i class="fas fa-plus-circle"></i> Nuevo</a>
         </div>
-    </div>
+    </div> -->
     </div>
     <!-- Card Body -->
     <div class="card-body">
         {% if not obj %}
         <div class="alert alert-info">No hay proveedores</div>
         {% else %}
-        <table class="table table-striped table-hover">
+        <div id="btnAdd">
+            <a class="btn btn-secondary" onclick="return abrir_modal('{% url 'cmp:proveedor_new' %}')" href="#" title="Agregar"><i class="fas fa-plus-circle"></i> </a>
+        </div>
+        <table
+        id="table"
+        data-toggle="table"
+        data-show-columns="true"
+        data-show-toggle="true"
+        data-show-fullscreen="true"
+        data-toolbar="#btnAdd"
+        >
             <thead>
-                <th>#</th>
-                <th>Descripcion</th>
-                <th>Direccion</th>
-                <th>Contacto</th>
+                <th data-sortable="true">#</th>
+                <th data-sortable="true">Descripcion</th>
+                <th data-sortable="true">Direccion</th>
+                <th data-sortable="true">Contacto</th>
                 <th>Telefono</th>
-                <th>Email</th>
+                <th data-sortable="true">Email</th>
                 <th>Estado</th>
                 <th class="all">Acciones</th>
             </thead>
@@ -41,10 +50,20 @@
                     <td>{{ item.contacto }}</td>
                     <td>{{ item.telefono }}</td>
                     <td>{{ item.email }}</td>
-                    <td>{{ item.estado|yesno:'Activo,Inactivo' }}</td>
                     <td>
-                        <button class="btn btn-primary btn-circle" onclick="return abrir_modal('{% url 'cmp:proveedor_edit' item.id %}')"><i class="far fa-edit"></i></button>
-                        <button class="btn btn-danger btn-circle" onclick="return abrir_modal('{% url 'cmp:proveedor_inactivar' item.id %}')"><i class="far fa-trash-alt"></i></button>
+                        <div class="divAccionTable">
+                            {% if item.estado %}
+                            <i class="fas fa-circle text-success"></i>
+                            {% else %}
+                            <i class="fas fa-circle text-danger"></i>
+                            {% endif %}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="divAccionTable">
+                            <button class="btn btn-primary btn-circle" onclick="return abrir_modal('{% url 'cmp:proveedor_edit' item.id %}')"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-danger btn-circle" onclick="return abrir_modal('{% url 'cmp:proveedor_inactivar' item.id %}')"><i class="fas fa-trash"></i></button>
+                        </div>
                     </td>
                 </tr>
                 {% endfor %}
@@ -56,9 +75,9 @@
 {% endblock %}
 
 {% block js_page %}
-<script>
+<!-- <script>
 $(document).ready(function() {
     $(".table").DataTable();
 });
-</script>
+</script> -->
 {% endblock %}

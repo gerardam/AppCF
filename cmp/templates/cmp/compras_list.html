@@ -1,12 +1,11 @@
 {% extends 'base/base.html' %}
 
 {% block page_content %}
-<!-- Dropdown Card Example -->
 <div class="card shadow mb-4">
     <!-- Card Header - Dropdown -->
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
     <h6 class="m-0 font-weight-bold text-primary">Lista de compras</h6>
-    <div class="dropdown no-arrow">
+    <!-- <div class="dropdown no-arrow">
         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
         </a>
@@ -15,23 +14,34 @@
         <a class="dropdown-item" href="{% url 'cmp:compras_new' %}" ><i class="fas fa-plus-circle"></i> Nueva</a>
         <a class="dropdown-item" href="{% url 'cmp:compras_print_all' %}" target="reportes" ><i class="fas fa-print"></i> Imprimir</a>
         </div>
-    </div>
+    </div> -->
     </div>
     <!-- Card Body -->
     <div class="card-body">
         {% if not obj %}
         <div class="alert alert-info">No hay compras</div>
         {% else %}
-        <table class="table table-striped table-hover dt-responsive nowrap" style="width: 100%;">
+        <div id="btnAdd">
+            <a class="btn btn-secondary" href="{% url 'cmp:compras_new' %}" title="Agregar"><i class="fas fa-plus-circle"></i> </a>
+            <a class="btn btn-secondary" href="{% url 'cmp:compras_print_all' %}" target="reportes" title="Reporte"><i class="fas fa-file-pdf"></i> </a>
+        </div>
+        <table
+        id="table"
+        data-toggle="table"
+        data-show-columns="true"
+        data-show-toggle="true"
+        data-show-fullscreen="true"
+        data-toolbar="#btnAdd"
+        style="width: 100%;">
             <thead>
-                <th>#</th>
-                <th>Fecha</th>
-                <th>Observacion</th>
-                <th>No. factura</th>
-                <th>f. Factura</th>
-                <th>Subtotal</th>
-                <th>Descuento</th>
-                <th>Total</th>
+                <th data-sortable="true">#</th>
+                <th data-sortable="true">Fecha</th>
+                <th data-sortable="true">Observacion</th>
+                <th data-sortable="true">No. factura</th>
+                <th data-sortable="true">f. Factura</th>
+                <th data-sortable="true">Subtotal</th>
+                <th data-sortable="true">Descuento</th>
+                <th data-sortable="true">Total</th>
                 <th>Estado</th>
                 <th class="all">Acciones</th>
             </thead>
@@ -46,12 +56,20 @@
                     <td>{{ item.sub_total }}</td>
                     <td>{{ item.descuento }}</td>
                     <td>{{ item.total }}</td>
-                    <td>{{ item.estado|yesno:'Activo,Inactivo' }}</td>
                     <td>
-                        <a href="{% url 'cmp:compras_edit' item.id %}" class="btn btn-primary btn-circle"><i class="far fa-edit"></i></a>
-                        <a href="{% url 'cmp:compras_print_one' item.id %}" class="btn btn-warning btn-circle" target="reportes"><i class="fas fa-print"></i></a>
-                        <!-- <button class="btn btn-primary btn-circle" onclick="return abrir_modal('{% url 'cmp:proveedor_edit' item.id %}')"><i class="far fa-edit"></i></button>
-                        <button class="btn btn-danger btn-circle" onclick="return abrir_modal('{% url 'cmp:proveedor_inactivar' item.id %}')"><i class="far fa-trash-alt"></i></button> -->
+                        <div class="divAccionTable">
+                            {% if item.estado %}
+                            <i class="fas fa-circle text-success"></i>
+                            {% else %}
+                            <i class="fas fa-circle text-danger"></i>
+                            {% endif %}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="divAccionTable">
+                            <a href="{% url 'cmp:compras_edit' item.id %}" class="btn btn-primary btn-circle"><i class="fas fa-edit"></i></a>
+                            <a href="{% url 'cmp:compras_print_one' item.id %}" class="btn btn-warning btn-circle" target="reportes"><i class="fas fa-file-pdf"></i></a>
+                        </div>
                     </td>
                 </tr>
                 {% endfor %}
@@ -63,9 +81,9 @@
 {% endblock %}
 
 {% block js_page %}
-<script>
+<!-- <script>
 $(document).ready(function() {
     $(".table").DataTable();
 });
-</script>
+</script> -->
 {% endblock %}

@@ -49,7 +49,7 @@
                     <td>{{ item.tipo }}</td>
                     <td>{{ item.celular }}</td>
                     <td>
-                        <div onclick="inactivar({{ item.id }})" style="font-size: 1.5em; text-align: center;">
+                        <div class="divAccionTable">
                             {% if item.estado %}
                             <i class="fas fa-circle text-success"></i>
                             {% else %}
@@ -58,8 +58,9 @@
                         </div>
                     </td>
                     <td>
-                        <div style="text-align: center;">
+                        <div class="divAccionTable">
                             <button class="btn btn-primary btn-circle" onclick="return abrir_modal('{% url 'fac:cliente_edit' item.id %}')"><i class="fas fa-edit"></i></button>
+                            <a class="btn btn-danger btn-circle" onclick="inactivar({{ item.id }})" href="#"><i class="fas fa-trash"></i></a>
                         </div>
                     </td>
                 </tr>
