@@ -25,7 +25,7 @@ class VistaBaseEdit(SinPrivilegios, generic.UpdateView):
         return super().form_valid(form)
 
 
-########## CLIENTES ##########
+########## CLIENTE ##########
 class ClienteView(SinPrivilegios, generic.ListView):
     permission_required = 'fac.view_cliente'
     model = Cliente
@@ -59,3 +59,6 @@ def ClienteInactivar(request, id):
         return HttpResponse('FAIL')
 
     return HttpResponse('FAIL')
+
+
+########## FACTURA ##########
