@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import ClienteView, ClienteNew, ClienteEdit, ClienteInactivar
+from .views import ClienteView, ClienteNew, ClienteEdit, ClienteInactivar, \
+FacturaView
 
 
 urlpatterns = [
@@ -7,4 +8,6 @@ urlpatterns = [
     path('cliente/new', ClienteNew.as_view(), name='cliente_new'),
     path('cliente/<int:pk>', ClienteEdit.as_view(), name='cliente_edit'),
     path('cliente/estado/<int:id>', ClienteInactivar, name='cliente_inactivar'),
+
+    path('factura/', FacturaView.as_view(), name='factura_list'),
 ]

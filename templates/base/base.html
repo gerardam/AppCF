@@ -111,6 +111,10 @@
               {% if perms.cmp.view_compras %}
               <a class="collapse-item" href="{% url 'cmp:compras_list' %}">Compras</a>
               {% endif %}
+              <h6 class="collapse-header">Salidas</h6>
+              {% if perms.fac.view_facturas %}
+              <a class="collapse-item" href="{% url 'fac:factura_list' %}">Facturas</a>
+              {% endif %}
             </div>
           </div>
         </li>

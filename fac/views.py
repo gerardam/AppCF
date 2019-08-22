@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required, permission_required
 from django.http import HttpResponse
     
-from .models import Cliente
+from .models import Cliente, FacturaEnc, FacturaDet
 from .forms import ClienteForm
 from bases.views import SinPrivilegios
 
@@ -63,3 +63,8 @@ def ClienteInactivar(request, id):
 
 
 ########## FACTURAS ##########
+class FacturaView(SinPrivilegios, generic.ListView):
+    permission_required = 'fac.view_facturaenc'
+    model = FacturaEnc
+    template_name = 'fac/factura_list.html'
+    context_object_name = 'obj'

@@ -1,0 +1,74 @@
+{% extends 'base/base.html' %}
+
+{% block page_content %}
+<div class="card shadow mb-4">
+    <!-- Card Header - Dropdown -->
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+    <h6 class="m-0 font-weight-bold text-primary">Lista de facturas</h6>
+    <!-- <div class="dropdown no-arrow">
+        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" x-placement="bottom-end" style="position: absolute; transform: translate3d(-156px, 19px, 0px); top: 0px; left: 0px; will-change: transform;">
+        <div class="dropdown-header">Acciones</div>
+        <a class="dropdown-item" onclick="return abrir_modal('{% url 'fac:cliente_new' %}')" href="#"><i class="fas fa-plus-circle"></i> Nuevo</a>
+        </div>
+    </div> -->
+    </div>
+    <!-- Card Body -->
+    <div class="card-body">
+        {% if not obj %}
+        <div class="alert alert-info">No hay facturas</div>
+        {% else %}
+        <div id="btnAdd">
+            <a class="btn btn-secondary" href="#" title="Agregar"><i class="fas fa-plus-circle"></i> </a>
+        </div>
+        <table
+        id="table"
+        data-toggle="table"
+        data-show-columns="true"
+        data-show-toggle="true"
+        data-show-fullscreen="true"
+        data-toolbar="#btnAdd"
+        >
+            <thead>
+                <th data-sortable="true" data-field="id">#</th>        
+                <th data-sortable="true" data-field="nombres">Cliente</th>
+                <th data-sortable="true" data-field="apellidos">Total</th>
+                <th data-field="estado">Estado</th>
+                <th class="all">Acciones</th>
+            </thead>
+            <tbody>
+                {% for item in obj%}
+                <tr>
+                  <td>{{ item.id }}</td>
+                  <td>{{ item.cliente }}</td>
+                  <td>{{ item.total }}</td>
+                  <td>
+                    <div class="divAccionTable">
+                        {% if item.estado %}
+                        <i class="fas fa-circle text-success"></i>
+                        {% else %}
+                        <i class="fas fa-circle text-danger"></i>
+                        {% endif %}
+                    </div>
+                  </td>
+                  <td>
+                    <a href="{% url 'fac:factura_edit' item.id %}" class="href btn btn-primary btn-circle">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                  </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+<script>
+    
+</script>
+{% endblock %}
