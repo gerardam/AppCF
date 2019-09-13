@@ -1,0 +1,48 @@
+{% extends 'base/base.html' %}
+
+{% block page_content %}
+<form method="post" id="frmFacturas">
+    {% csrf_token %}
+<div class="card shadow mb-4">
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <a href="#" class="btn btn-success">Guardar</a>
+        <a href="#" class="btn btn-warning">Imprimir</a>
+        <a href="{% url 'fac:factura_list' %}" class="btn btn-danger">Cancelar</a>
+    </div>
+    <div class="card-body">
+        <div class="content">
+            <!-- Sección Superior -->
+            <div class="row">
+                <!-- Sección Izquierda -->
+                <div class="col-lg-6 form-group">
+                    Seccion izquierda
+                </div>
+                <!-- Fin Sección Izquierda -->
+
+                <!-- Sección Derecha -->
+                <div class="col-lg-6 from-group">
+                    Seccio derecha
+                </div>
+                <!-- Fin Sección Derecha -->
+            </div>
+            <!-- Fin Sección Superior -->
+            <!-- Inicio Detalle -->
+            <hr>
+            <div class="row p-1">
+                <div class="col-lg-12">
+                    Detalle
+                </div>
+            </div>
+            <!-- Fin Detalle -->
+        </div>
+    </div>
+</div>
+</form>
+{% endblock %}
+{% block js_page %}
+<script>
+    $(function () {
+        $("#sidebarToggle").click();
+    });
+</script>
+{% endblock %}

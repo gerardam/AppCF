@@ -17,11 +17,8 @@
     </div>
     <!-- Card Body -->
     <div class="card-body">
-        {% if not obj %}
-        <div class="alert alert-info">No hay facturas</div>
-        {% else %}
         <div id="btnAdd">
-            <a class="btn btn-secondary" href="#" title="Agregar"><i class="fas fa-plus-circle"></i> </a>
+            <a class="btn btn-secondary" href="{% url 'fac:factura_new' %}" title="Agregar"><i class="fas fa-plus-circle"></i> </a>
         </div>
         <table
         id="table"
@@ -62,6 +59,8 @@
                 {% endfor %}
             </tbody>
         </table>
+        {% if not obj %}
+        <div class="alert alert-info text-center">No hay facturas</div>
         {% endif %}
     </div>
 </div>
