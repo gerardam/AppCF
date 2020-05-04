@@ -82,6 +82,6 @@ def facturas(request,id=None):
     clientes = Cliente.objects.filter(estado=True)
     
 
-    contexto = {}
+    contexto = {"enc":encabezado, "det":detalle, "clientes":clientes}
 
     return render (request, template_name, contexto)
