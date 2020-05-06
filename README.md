@@ -10,3 +10,5 @@ Reportes
 Permisos de usuarios
 Inicio de sesion
 
+Notas para el desarrollador:
+Entorno virtual: C:\Pruebas\entornopy\dj22\Scripts>activate

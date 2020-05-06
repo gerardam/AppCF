@@ -10,6 +10,8 @@ from .models import Cliente, FacturaEnc, FacturaDet
 from .forms import ClienteForm
 from bases.views import SinPrivilegios
 
+import inv.views as inv
+
 
 ########## VISTAS BASE ##########
 class VistaBaseCreate(SinPrivilegios, generic.CreateView):
@@ -80,8 +82,10 @@ def facturas(request,id=None):
     }
     detalle = {}
     clientes = Cliente.objects.filter(estado=True)
-    
 
     contexto = {"enc":encabezado, "det":detalle, "clientes":clientes}
 
     return render (request, template_name, contexto)
+
+class ProductoView(inv.ProductoView):
+    template_name="fac/buscar_producto.html"
